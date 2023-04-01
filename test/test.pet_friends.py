@@ -6,7 +6,7 @@ pf = PetFriends()
 
 
 def test_get_api_key_for_valid_user(email=valid_email, password=valid_password):
-#Получение ключа с валидными данными. Базовый положительный сценарий
+#ГЏГ®Г«ГіГ·ГҐГ­ГЁГҐ ГЄГ«ГѕГ·Г  Г± ГўГ Г«ГЁГ¤Г­Г»Г¬ГЁ Г¤Г Г­Г­Г»Г¬ГЁ. ГЃГ Г§Г®ГўГ»Г© ГЇГ®Г«Г®Г¦ГЁГІГҐГ«ГјГ­Г»Г© Г±Г¶ГҐГ­Г Г°ГЁГ©
 
     status, result = pf.get_api_key(email, password)
     assert status == 200
@@ -14,7 +14,7 @@ def test_get_api_key_for_valid_user(email=valid_email, password=valid_password):
 
 
 def test_get_api_key_for_invalid_user_psw(email=valid_email, password=invalid_password):
-# Получение ключа с не валидным паролем. Негативный сценарий
+# ГЏГ®Г«ГіГ·ГҐГ­ГЁГҐ ГЄГ«ГѕГ·Г  Г± Г­ГҐ ГўГ Г«ГЁГ¤Г­Г»Г¬ ГЇГ Г°Г®Г«ГҐГ¬. ГЌГҐГЈГ ГІГЁГўГ­Г»Г© Г±Г¶ГҐГ­Г Г°ГЁГ©
 
     status, result = pf.get_api_key(email, password)
     print(result)
@@ -22,14 +22,14 @@ def test_get_api_key_for_invalid_user_psw(email=valid_email, password=invalid_pa
 
 
 def test_get_api_key_for_invalid_user_email(email=invalid_email, password=valid_password):
-# Получение ключа с не валидным email. Негативный сценарий
+# ГЏГ®Г«ГіГ·ГҐГ­ГЁГҐ ГЄГ«ГѕГ·Г  Г± Г­ГҐ ГўГ Г«ГЁГ¤Г­Г»Г¬ email. ГЌГҐГЈГ ГІГЁГўГ­Г»Г© Г±Г¶ГҐГ­Г Г°ГЁГ©
 
     status, result = pf.get_api_key(email, password)
     assert status == 403
 
 
 def test_get_all_pets_with_valid_key(filter=''):
-#Получение списка питомцев с валидным ключом. Базовый позитивный сценарий.
+#ГЏГ®Г«ГіГ·ГҐГ­ГЁГҐ Г±ГЇГЁГ±ГЄГ  ГЇГЁГІГ®Г¬Г¶ГҐГў Г± ГўГ Г«ГЁГ¤Г­Г»Г¬ ГЄГ«ГѕГ·Г®Г¬. ГЃГ Г§Г®ГўГ»Г© ГЇГ®Г§ГЁГІГЁГўГ­Г»Г© Г±Г¶ГҐГ­Г Г°ГЁГ©.
 
     _, auth_key = pf.get_api_key(valid_email, valid_password)
     status, result = pf.get_list_of_pets(auth_key, filter)
@@ -37,8 +37,8 @@ def test_get_all_pets_with_valid_key(filter=''):
     assert len(result['pets']) > 0
 
 
-def test_add_new_pet_with_valid_data(name='Тузик', animal_type='Дворняга', age='2', pet_photo='images/photo_dog.jpeg'):
-# Добавление питомца с валидными данными. Базовый позитивный сценарий.
+def test_add_new_pet_with_valid_data(name='Г’ГіГ§ГЁГЄ', animal_type='Г„ГўГ®Г°Г­ГїГЈГ ', age='2', pet_photo='images/photo_dog.jpeg'):
+# Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ ГЇГЁГІГ®Г¬Г¶Г  Г± ГўГ Г«ГЁГ¤Г­Г»Г¬ГЁ Г¤Г Г­Г­Г»Г¬ГЁ. ГЃГ Г§Г®ГўГ»Г© ГЇГ®Г§ГЁГІГЁГўГ­Г»Г© Г±Г¶ГҐГ­Г Г°ГЁГ©.
 
     pet_photo = os.path.join(os.path.dirname(__file__), pet_photo)
     _, auth_key = pf.get_api_key(valid_email, valid_password)
@@ -47,8 +47,8 @@ def test_add_new_pet_with_valid_data(name='Тузик', animal_type='Дворняга', age='
     assert result['name'] == name
 
 
-def test_add_new_pet_with_invalid_photo_txt(name='Тузик', animal_type='Дворняга', age='2', pet_photo='images/photo_dog_invalid.txt'):
-# Добавление питомца с не валидным фото. Негативный сценарий.
+def test_add_new_pet_with_invalid_photo_txt(name='Г’ГіГ§ГЁГЄ', animal_type='Г„ГўГ®Г°Г­ГїГЈГ ', age='2', pet_photo='images/photo_dog_invalid.txt'):
+# Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ ГЇГЁГІГ®Г¬Г¶Г  Г± Г­ГҐ ГўГ Г«ГЁГ¤Г­Г»Г¬ ГґГ®ГІГ®. ГЌГҐГЈГ ГІГЁГўГ­Г»Г© Г±Г¶ГҐГ­Г Г°ГЁГ©.
 
     pet_photo = os.path.join(os.path.dirname(__file__), pet_photo)
     _, auth_key = pf.get_api_key(valid_email, valid_password)
@@ -57,12 +57,12 @@ def test_add_new_pet_with_invalid_photo_txt(name='Тузик', animal_type='Дворняга'
 
 
 def test_successful_delete_pet():
-# Удаление питомца. Базовый позитивный сценарий.
+# Г“Г¤Г Г«ГҐГ­ГЁГҐ ГЇГЁГІГ®Г¬Г¶Г . ГЃГ Г§Г®ГўГ»Г© ГЇГ®Г§ГЁГІГЁГўГ­Г»Г© Г±Г¶ГҐГ­Г Г°ГЁГ©.
     _, auth_key = pf.get_api_key(valid_email, valid_password)
     _, my_pets = pf.get_list_of_pets(auth_key, "my_pets")
 
     if len(my_pets['pets']) == 0:
-        pf.add_new_pet(auth_key, "Супердог", "Дог", "3", "images/photo_dog.jpeg")
+        pf.add_new_pet(auth_key, "Г‘ГіГЇГҐГ°Г¤Г®ГЈ", "Г„Г®ГЈ", "3", "images/photo_dog.jpeg")
         _, my_pets = pf.get_list_of_pets(auth_key, "my_pets")
 
     pet_id = my_pets['pets'][0]['id']
@@ -75,12 +75,12 @@ def test_successful_delete_pet():
 
 
 def test_successful_delete_of_deleted_pet():
-# Удаление уже удаленного питомца. Негативный сценарий
+# Г“Г¤Г Г«ГҐГ­ГЁГҐ ГіГ¦ГҐ ГіГ¤Г Г«ГҐГ­Г­Г®ГЈГ® ГЇГЁГІГ®Г¬Г¶Г . ГЌГҐГЈГ ГІГЁГўГ­Г»Г© Г±Г¶ГҐГ­Г Г°ГЁГ©
     _, auth_key = pf.get_api_key(valid_email, valid_password)
     _, my_pets = pf.get_list_of_pets(auth_key, "my_pets")
 
     if len(my_pets['pets']) == 0:
-        pf.add_new_pet(auth_key, "Супердог", "Дог", "3", "images/photo_dog.jpeg")
+        pf.add_new_pet(auth_key, "Г‘ГіГЇГҐГ°Г¤Г®ГЈ", "Г„Г®ГЈ", "3", "images/photo_dog.jpeg")
         _, my_pets = pf.get_list_of_pets(auth_key, "my_pets")
 
     pet_id = my_pets['pets'][0]['id']
@@ -93,8 +93,8 @@ def test_successful_delete_of_deleted_pet():
     assert pet_id not in my_pets.values()
 
 
-def test_successful_update_self_pet_info(name='Tuzik', animal_type='Жевастик', age=1):
-#Обновление данных. Позитивный сценарий.
+def test_successful_update_self_pet_info(name='Tuzik', animal_type='Г†ГҐГўГ Г±ГІГЁГЄ', age=1):
+#ГЋГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ Г¤Г Г­Г­Г»Гµ. ГЏГ®Г§ГЁГІГЁГўГ­Г»Г© Г±Г¶ГҐГ­Г Г°ГЁГ©.
 
     _, auth_key = pf.get_api_key(valid_email, valid_password)
     _, my_pets = pf.get_list_of_pets(auth_key, "my_pets")
@@ -107,8 +107,8 @@ def test_successful_update_self_pet_info(name='Tuzik', animal_type='Жевастик', a
         raise Exception("There is no my pets")
 
 
-def test_add_new_pet_without_photo(name='Барсик', animal_type='Тузямба', age='2'):
-#Добавление питомца без фото. Базовый позитивный сценарий.
+def test_add_new_pet_without_photo(name='ГЃГ Г°Г±ГЁГЄ', animal_type='Г’ГіГ§ГїГ¬ГЎГ ', age='2'):
+#Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ ГЇГЁГІГ®Г¬Г¶Г  ГЎГҐГ§ ГґГ®ГІГ®. ГЃГ Г§Г®ГўГ»Г© ГЇГ®Г§ГЁГІГЁГўГ­Г»Г© Г±Г¶ГҐГ­Г Г°ГЁГ©.
 
     _, auth_key = pf.get_api_key(valid_email, valid_password)
     status, result = pf.add_new_pet_without_photo(auth_key, name, animal_type, age)
@@ -116,20 +116,20 @@ def test_add_new_pet_without_photo(name='Барсик', animal_type='Тузямба', age='2'
     assert result['name'] == name
 
 
-def test_add_new_pet_with_long_name(animal_type='Тузямба', age='2'):
-# Добавление питомца с длинным именем. Базовый позитивный сценарий.
+def test_add_new_pet_with_long_name(animal_type='Г’ГіГ§ГїГ¬ГЎГ ', age='2'):
+# Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ ГЇГЁГІГ®Г¬Г¶Г  Г± Г¤Г«ГЁГ­Г­Г»Г¬ ГЁГ¬ГҐГ­ГҐГ¬. ГЃГ Г§Г®ГўГ»Г© ГЇГ®Г§ГЁГІГЁГўГ­Г»Г© Г±Г¶ГҐГ­Г Г°ГЁГ©.
 
-    name = """Тузик вышел погулять и поймал лягушку 
-    вобщем Тузик молодец но нафиг мне лягушка
-    лучше б Тузик притащил толстую курицу"""
+    name = """Г’ГіГ§ГЁГЄ ГўГ»ГёГҐГ« ГЇГ®ГЈГіГ«ГїГІГј ГЁ ГЇГ®Г©Г¬Г Г« Г«ГїГЈГіГёГЄГі 
+    ГўГ®ГЎГ№ГҐГ¬ Г’ГіГ§ГЁГЄ Г¬Г®Г«Г®Г¤ГҐГ¶ Г­Г® Г­Г ГґГЁГЈ Г¬Г­ГҐ Г«ГїГЈГіГёГЄГ 
+    Г«ГіГ·ГёГҐ ГЎ Г’ГіГ§ГЁГЄ ГЇГ°ГЁГІГ Г№ГЁГ« ГІГ®Г«Г±ГІГіГѕ ГЄГіГ°ГЁГ¶Гі"""
     _, auth_key = pf.get_api_key(valid_email, valid_password)
     status, result = pf.add_new_pet_without_photo(auth_key, name, animal_type, age)
     assert status == 200
     assert result['name'] == name
 
 
-def test_add_new_pet_with_special_characters_in_name(name='DoG_doG123!@#5647.,?#', animal_type='Тузямба', age='2'):
-#Добавление питомца со спецсимволами в имени. Позитивный сценарий.
+def test_add_new_pet_with_special_characters_in_name(name='DoG_doG123!@#5647.,?#', animal_type='Г’ГіГ§ГїГ¬ГЎГ ', age='2'):
+#Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ ГЇГЁГІГ®Г¬Г¶Г  Г±Г® Г±ГЇГҐГ¶Г±ГЁГ¬ГўГ®Г«Г Г¬ГЁ Гў ГЁГ¬ГҐГ­ГЁ. ГЏГ®Г§ГЁГІГЁГўГ­Г»Г© Г±Г¶ГҐГ­Г Г°ГЁГ©.
 
     _, auth_key = pf.get_api_key(valid_email, valid_password)
     status, result = pf.add_new_pet_without_photo(auth_key, name, animal_type, age)
@@ -137,8 +137,8 @@ def test_add_new_pet_with_special_characters_in_name(name='DoG_doG123!@#5647.,?#
     assert result['name'] == name
 
 
-def test_add_new_pet_with_only_numbers_in_name(name='12345678', animal_type='Тузямба', age='2'):
-#Добавление питомца с целыми числами в имени. Негативный сценарий.
+def test_add_new_pet_with_only_numbers_in_name(name='12345678', animal_type='Г’ГіГ§ГїГ¬ГЎГ ', age='2'):
+#Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ ГЇГЁГІГ®Г¬Г¶Г  Г± Г¶ГҐГ«Г»Г¬ГЁ Г·ГЁГ±Г«Г Г¬ГЁ Гў ГЁГ¬ГҐГ­ГЁ. ГЌГҐГЈГ ГІГЁГўГ­Г»Г© Г±Г¶ГҐГ­Г Г°ГЁГ©.
 
     _, auth_key = pf.get_api_key(valid_email, valid_password)
     status, result = pf.add_new_pet_without_photo(auth_key, name, animal_type, age)
@@ -146,8 +146,8 @@ def test_add_new_pet_with_only_numbers_in_name(name='12345678', animal_type='Туз
     assert result['name'] != name
 
 
-def test_add_new_pet_with_age_not_number(name='Барсик', animal_type='Тузямба', age='twelve'):
-#Добавление питомца с возрастом не числовые значения. Негативный сценарий.
+def test_add_new_pet_with_age_not_number(name='ГЃГ Г°Г±ГЁГЄ', animal_type='Г’ГіГ§ГїГ¬ГЎГ ', age='twelve'):
+#Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ ГЇГЁГІГ®Г¬Г¶Г  Г± ГўГ®Г§Г°Г Г±ГІГ®Г¬ Г­ГҐ Г·ГЁГ±Г«Г®ГўГ»ГҐ Г§Г­Г Г·ГҐГ­ГЁГї. ГЌГҐГЈГ ГІГЁГўГ­Г»Г© Г±Г¶ГҐГ­Г Г°ГЁГ©.
     _, auth_key = pf.get_api_key(valid_email, valid_password)
     status, result = pf.add_new_pet_without_photo(auth_key, name, animal_type, age)
     assert status == 400
@@ -155,7 +155,7 @@ def test_add_new_pet_with_age_not_number(name='Барсик', animal_type='Тузямба', a
 
 
 def test_successful_add_photo_of_pet(pet_photo='images/photo_dog.jpeg'):
-#Добавление фото. Позитивный сценарий.
+#Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ ГґГ®ГІГ®. ГЏГ®Г§ГЁГІГЁГўГ­Г»Г© Г±Г¶ГҐГ­Г Г°ГЁГ©.
     pet_photo = os.path.join(os.path.dirname(__file__), pet_photo)
     _, auth_key = pf.get_api_key(valid_email, valid_password)
     _, my_pets = pf.get_list_of_pets(auth_key, "my_pets")
